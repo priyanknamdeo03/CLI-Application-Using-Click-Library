@@ -1,0 +1,12 @@
+[
+    {
+        "name": "qwerty",
+        "id": 101,
+        "department": "electrical"
+    },
+    {
+        "name": "shashwat",
+        "id": 103,
+        "department": "mech"
+    }
+]
