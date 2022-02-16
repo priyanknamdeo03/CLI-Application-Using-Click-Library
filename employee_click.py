@@ -13,44 +13,44 @@ def add_employee(**options):
         'department': options['department'],
     }
 
-    with open('student.json', 'r') as file:
+    with open('employee.json', 'r') as file:
         data = json.load(file)
 
     data.append(entity)
-    with open('student.json', 'w') as file:
+    with open('employee.json', 'w') as file:
         json.dump(data, file, indent=4)
 
 
 @click.command(name='view_employee', help='Display all entries in Employee')
 def view_employees():
-    with open('student.json', 'r') as file:
+    with open('employee.json', 'r') as file:
         data = json.load(file)
     
     for fetch_details in data:
-        print("-------------------------------")
+        click.echo("-------------------------------")
         print("Employee Name : ", fetch_details['name'])
         print("Employee Id : ", fetch_details['id'])
         print("Employee Department : ", fetch_details['department'])
-        print("-------------------------------")
+        click.echo("-------------------------------")
 
 
 @click.command(name='delete_employee', help='Delete entry in Employees table')
 @click.option('--id', prompt='Enter Id of Employee To Delete', help='Employee Id', type=int)
 def delete_employee(id):
-    print("\n--- Delete Student ---")
+    click.echo("\n--- Delete Employee ---")
     
-    with open(f'student.json', "r+", encoding="utf-8") as file:
+    with open(f'employee.json', "r+", encoding="utf-8") as file:
         data = json.load(file)
         
         for row_detail in range(len(data)):
             if data[row_detail]['id'] == id:
                 del data[row_detail]
-                print("\Record Deletion Successful.............\n")
+                click.echo("\Record Deletion Successful.............\n")
                 break
         else:
-            print("\nId not found in our database...........\n")
+            click.echo("\nId not found in our database...........\n")
     
-    with open(f'student.json', "w", encoding="utf-8") as file:
+    with open(f'employee.json', "w", encoding="utf-8") as file:
         json.dump(data, file, indent=4)
 
 
